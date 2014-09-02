@@ -7,15 +7,15 @@
 var getElementsByClassName = function(className){
 	var currentElement = document.body;
 	var elements = [];
-  
-  	for (var i = 0; i < currentElement.childNodes.length; i++) {
-  	  if (currentElement.childNodes[i].contains(className)) {elements.push(currentElement.childNodes[i]);}
-  	  var newElement = currentElement.childNodes[i];
-  	  if (newElement.childNodes.length === 0) {return elements;}
-  	  for (var j = 0; j < newElement.childNodes[j].length; j++) {
-  	  	getElementsByClassName(className);
-  	  }
-    }
+    if (currentElement.childNodes.length === 0) {return elements;}
+  	else {for (var i = 0; i < currentElement.childNodes.length; i++) {
+  	  	  if (currentElement.childNodes[i].contains(className)) {elements.push(currentElement.childNodes[i]);}
+  	  	  currentElement = currentElement.childNodes[i];
+  	  	  for (var j = 0; j < currentElement.childNodes.length; j++) {
+  	  	  	getElementsByClassName(className);
+  	  	  }
+  	  	  return elements;
+  	    }}
 
     return elements;
  
