@@ -3,5 +3,12 @@
 
 // but you don't so you're going to write it from scratch:
 var stringifyJSON = function(obj) {
-  // your code goes here
+function stringifi(obj) {
+  var result = [];
+  var myKeys = Object.keys(obj);
+  for (var i = 0; i < myKeys.length; i++) {
+      result.push('"' + myKeys[i] + '": "' + obj[myKeys[i]] + '"');
+  }
+  var final = '"{' + result.join(",") + '}"';
+  return final;
 };
