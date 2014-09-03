@@ -8,28 +8,34 @@ var getElementsByClassName = function(className){
   var body = document.body;
   var result1 = []; 
   var nodesList = [];
+  var workingClasses = [];
 
 	var innerFunc = function (workingNode) {
-		var workingClasses = workingNode.classList;
-		nodesList = workingNode.childNodes;
-		var nodesClasses = nodesList.classList;
-	  
-	  if (workingClasses) {
-			if (workingClasses.contains(className)) {
+		workingClasses = Array.prototype.slice.apply(workingNode.classList);
+		nodesList = Array.prototype.slice.apply(workingNode.childNodes);
+		  //console.log(workingClasses);
+		if (workingNode.childNodes.length < 1) {return result1;}
+		else if (workingClasses.indexOf(className) > -1) {
           result1.push(workingNode);
-			};
 		}
+		
+      //console.log(nodesList);
+	    //console.log(workingClasses.indexOf(className));
+	  
 
 		for (var i = 0; i < nodesList.length; i++) {
 		  innerFunc(nodesList[i]);
 	  } 
+
 	};
 
 
 
 innerFunc(body);
-console.log(result1);
+//console.log(result1);
 return result1;
 	
 
 };
+
+
